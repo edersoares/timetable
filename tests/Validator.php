@@ -15,8 +15,10 @@ trait Validator
 
     public function toValidateRequired(string $attribute): HigherOrderTapProxy|TestCall
     {
+        $message = trans('validation.required', ['attribute' => $attribute]);
+
         $this->expectException(ValidationException::class);
-        $this->expectExceptionMessage('field is required');
+        $this->expectExceptionMessage($message);
 
         $modelAttributes = $this->getAttributesFromFactory();
 
@@ -29,8 +31,10 @@ trait Validator
 
     public function toValidateMin(string $attribute, int $min): HigherOrderTapProxy|TestCall
     {
+        $message = trans('validation.min', ['attribute' => $attribute, 'min' => $min]);
+
         $this->expectException(ValidationException::class);
-        $this->expectExceptionMessage('field must be at least');
+        $this->expectExceptionMessage($message['string']);
 
         $modelAttributes = $this->getAttributesFromFactory();
 
@@ -43,8 +47,10 @@ trait Validator
 
     public function toValidateMax(string $attribute, int $max): HigherOrderTapProxy|TestCall
     {
+        $message = trans('validation.max', ['attribute' => $attribute, 'max' => $max]);
+
         $this->expectException(ValidationException::class);
-        $this->expectExceptionMessage('field must not be greater than');
+        $this->expectExceptionMessage($message['string']);
 
         $modelAttributes = $this->getAttributesFromFactory();
 
