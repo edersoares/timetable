@@ -18,7 +18,7 @@ class DayOfWeekFactory extends Factory
     {
         /** @phpstan-ignore-next-line */
         return [
-            'slug' => $this->faker->randomElement(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']),
+            'slug' => $this->faker->unique()->randomElement(['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']),
         ];
     }
 }

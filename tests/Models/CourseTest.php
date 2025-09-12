@@ -4,21 +4,10 @@ declare(strict_types=1);
 
 use Portabilis\Timetable\Models\Course;
 
-test('can create a course', function () {
-    $course = Course::factory()->create([
-        'name' => 'Ensino Fundamental',
-        'slug' => 'ensino-fundamental',
-    ]);
+describe(Course::class, function () {
+    beforeEach()->eloquent(Course::class);
 
-    expect($course->name)->toBe('Ensino Fundamental')
-        ->and($course->slug)->toBe('ensino-fundamental')
-        ->and($course->exists)->toBeTrue();
-});
-
-test('can use factory to create course', function () {
-    $course = Course::factory()->create();
-
-    expect($course->name)->toBeString()
-        ->and($course->slug)->toBeString()
-        ->and($course->exists)->toBeTrue();
+    test()->toBeCreate();
+    test()->toBeDelete();
+    test()->toBeUpdate();
 });
