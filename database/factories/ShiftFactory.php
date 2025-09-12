@@ -18,7 +18,7 @@ class ShiftFactory extends Factory
     {
         /** @phpstan-ignore-next-line */
         return [
-            'name' => $this->faker->randomElement(['Matutino', 'Vespertino', 'Noturno', 'Integral']),
+            'name' => $this->faker->unique()->randomElement(['Matutino', 'Vespertino', 'Noturno', 'Integral']),
         ];
     }
 }

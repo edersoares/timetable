@@ -6,6 +6,7 @@ namespace Portabilis\Timetable\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Portabilis\Timetable\Database\Factories\CourseFactory;
 
 class Course extends Model
@@ -23,5 +24,10 @@ class Course extends Model
     protected static function newFactory(): CourseFactory
     {
         return CourseFactory::new();
+    }
+
+    public function grades(): HasMany
+    {
+        return $this->hasMany(Grade::class);
     }
 }

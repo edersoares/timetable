@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Portabilis\Timetable\Models\DayOfWeek;
 use Portabilis\Timetable\Models\TeacherAvailability;
 
 describe(TeacherAvailability::class, function () {
@@ -10,4 +11,5 @@ describe(TeacherAvailability::class, function () {
     test()->toBeCreate();
     test()->toBeDelete();
     test()->toBeUpdate();
+    test()->toHaveBelongsToRelation(DayOfWeek::class, 'dayOfWeek');
 });

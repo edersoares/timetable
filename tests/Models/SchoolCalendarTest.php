@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Portabilis\Timetable\Models\AcademicYear;
+use Portabilis\Timetable\Models\School;
 use Portabilis\Timetable\Models\SchoolCalendar;
 
 describe(SchoolCalendar::class, function () {
@@ -10,4 +12,6 @@ describe(SchoolCalendar::class, function () {
     test()->toBeCreate();
     test()->toBeDelete();
     test()->toBeUpdate();
+    test()->toHaveBelongsToRelation(AcademicYear::class, 'academicYear');
+    test()->toHaveBelongsToRelation(School::class, 'school');
 });
