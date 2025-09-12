@@ -18,6 +18,6 @@ class CreateTimetableTable extends Migration
 
     public function down(): void
     {
-        Schema::drop('timetable');
+        Schema::dropIfExists('timetable');
     }
 }
