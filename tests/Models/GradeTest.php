@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Portabilis\Timetable\Models\Course;
 use Portabilis\Timetable\Models\Grade;
 
-it('can create a grade', function () {
+test('can create a grade', function () {
     $course = Course::factory()->create();
     $grade = Grade::factory()->create([
         'course_id' => $course->id,
@@ -19,7 +19,7 @@ it('can create a grade', function () {
         ->and($grade->exists)->toBeTrue();
 });
 
-it('can use factory to create grade', function () {
+test('can use factory to create grade', function () {
     $grade = Grade::factory()->create();
 
     expect($grade->name)->toBeString()
@@ -28,7 +28,7 @@ it('can use factory to create grade', function () {
         ->and($grade->exists)->toBeTrue();
 });
 
-it('belongs to a course', function () {
+test('belongs to a course', function () {
     $grade = Grade::factory()->create();
 
     expect($grade->course)->toBeInstanceOf(Course::class);

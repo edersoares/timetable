@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Portabilis\Timetable\Models\Course;
 
-it('can create a course', function () {
+test('can create a course', function () {
     $course = Course::factory()->create([
         'name' => 'Ensino Fundamental',
         'slug' => 'ensino-fundamental',
@@ -15,7 +15,7 @@ it('can create a course', function () {
         ->and($course->exists)->toBeTrue();
 });
 
-it('can use factory to create course', function () {
+test('can use factory to create course', function () {
     $course = Course::factory()->create();
 
     expect($course->name)->toBeString()

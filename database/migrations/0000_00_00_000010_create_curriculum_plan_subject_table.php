@@ -9,17 +9,17 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('school_calendar', function (Blueprint $table) {
+        Schema::create('curriculum_plan_subject', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('academic_year_id')->constrained('academic_year');
-            $table->foreignId('school_id')->constrained('school');
-            $table->string('name', 50);
+            $table->foreignId('curriculum_plan_id')->constrained('curriculum_plan');
+            $table->foreignId('subject_id')->constrained('subject');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('school_calendar');
+        Schema::dropIfExists('curriculum_plan_subject');
     }
 };

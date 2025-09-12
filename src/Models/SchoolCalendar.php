@@ -17,14 +17,21 @@ class SchoolCalendar extends Model
     protected $table = 'school_calendar';
 
     protected $fillable = [
+        'academic_year_id',
         'school_id',
         'name',
-        'year',
     ];
 
     protected static function newFactory(): SchoolCalendarFactory
     {
         return SchoolCalendarFactory::new();
+    }
+
+    /** @return BelongsTo<AcademicYear, SchoolCalendar> */
+    public function academicYear(): BelongsTo
+    {
+        /** @phpstan-ignore-next-line */
+        return $this->belongsTo(AcademicYear::class);
     }
 
     /** @return BelongsTo<School, SchoolCalendar> */

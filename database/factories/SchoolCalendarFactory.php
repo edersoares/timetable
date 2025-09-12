@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Portabilis\Timetable\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Portabilis\Timetable\Models\AcademicYear;
 use Portabilis\Timetable\Models\School;
 use Portabilis\Timetable\Models\SchoolCalendar;
 
@@ -17,13 +18,11 @@ class SchoolCalendarFactory extends Factory
 
     public function definition(): array
     {
-        $year = $this->faker->numberBetween(2020, 2030);
-
         /** @phpstan-ignore-next-line */
         return [
+            'academic_year_id' => AcademicYear::factory(),
             'school_id' => School::factory(),
-            'name' => "Calendário Escolar {$year}",
-            'year' => $year,
+            'name' => 'Calendário Escolar',
         ];
     }
 }

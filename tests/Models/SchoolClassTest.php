@@ -6,7 +6,7 @@ use Portabilis\Timetable\Models\Grade;
 use Portabilis\Timetable\Models\School;
 use Portabilis\Timetable\Models\SchoolClass;
 
-it('can create a school class', function () {
+test('can create a school class', function () {
     $school = School::factory()->create();
     $grade = Grade::factory()->create();
     $schoolClass = SchoolClass::factory()->create([
@@ -23,7 +23,7 @@ it('can create a school class', function () {
         ->and($schoolClass->exists)->toBeTrue();
 });
 
-it('can use factory to create school class', function () {
+test('can use factory to create school class', function () {
     $schoolClass = SchoolClass::factory()->create();
 
     expect($schoolClass->name)->toBeString()
@@ -33,7 +33,7 @@ it('can use factory to create school class', function () {
         ->and($schoolClass->exists)->toBeTrue();
 });
 
-it('belongs to a grade and school', function () {
+test('belongs to a grade and school', function () {
     $schoolClass = SchoolClass::factory()->create();
 
     expect($schoolClass->grade)->toBeInstanceOf(Grade::class)
