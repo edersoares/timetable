@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Portabilis\Timetable\Actions;
 
 class DeleteAction extends OperationAction
