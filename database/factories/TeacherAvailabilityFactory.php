@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Portabilis\Timetable\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
+use Portabilis\Timetable\Models\DayOfWeek;
 use Portabilis\Timetable\Models\TeacherAvailability;
 
 /**
@@ -17,13 +17,14 @@ class TeacherAvailabilityFactory extends Factory
 
     public function definition(): array
     {
-        /** @phpstan-ignore-next-line */
-        $name = (string) $this->faker->randomElement(['Disponível', 'Parcialmente Disponível', 'Não Disponível', 'Licença']);
+        $startHour = $this->faker->numberBetween(7, 17);
+        $endHour = $this->faker->numberBetween($startHour + 1, 18);
 
         /** @phpstan-ignore-next-line */
         return [
-            'name' => $name,
-            'slug' => Str::slug($name),
+            'day_of_week_id' => DayOfWeek::factory(),
+            'start_time' => sprintf('%02d:00:00', $startHour),
+            'end_time' => sprintf('%02d:00:00', $endHour),
         ];
     }
 }

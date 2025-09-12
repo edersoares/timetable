@@ -12,8 +12,9 @@ class CreateTeacherAvailabilityTable extends Migration
     {
         Schema::create('teacher_availability', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 50);
-            $table->string('slug', 50);
+            $table->foreignId('day_of_week_id')->constrained('day_of_week');
+            $table->time('start_time');
+            $table->time('end_time');
             $table->timestamps();
         });
     }
