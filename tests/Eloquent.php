@@ -19,6 +19,15 @@ trait Eloquent
 
     protected Factory $factory;
 
+    protected bool $shouldUseFactoryMake = false;
+
+    public function shouldUseFactoryMake()
+    {
+        $this->shouldUseFactoryMake = true;
+
+        return test();
+    }
+
     public function eloquent(string $class): static
     {
         $this->class = $class;
@@ -32,6 +41,15 @@ trait Eloquent
         $this->factory = $callable($this->factory);
 
         return $this;
+    }
+
+    public function getAttributesFromFactory(): array
+    {
+        if ($this->shouldUseFactoryMake) {
+            return $this->factory->make()->toArray();
+        }
+
+        return $this->factory->create()->toArray();
     }
 
     public function toBeCreate(): HigherOrderTapProxy|TestCall

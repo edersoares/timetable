@@ -93,7 +93,7 @@ trait Endpoint
             $this->removeTimestamps($modelCreated->toArray())
         );
 
-        return $this->getJson($this->endpoint.'/'.$modelCreated->getKey())
+        return $this->getJson($this->endpoint . '/' . $modelCreated->getKey())
             ->assertOk()
             ->assertJson($json);
     }
@@ -109,7 +109,7 @@ trait Endpoint
 
         $payload = $this->preparePayload($modelUpdateAttributes);
 
-        $response = $this->putJson($this->endpoint.'/'.$modelCreated->getKey(), $payload)
+        $response = $this->putJson($this->endpoint . '/' . $modelCreated->getKey(), $payload)
             ->assertOk()
             ->assertJson($json);
 
@@ -129,7 +129,7 @@ trait Endpoint
             $this->removeTimestamps($attributes)
         );
 
-        $response = $this->deleteJson($this->endpoint.'/'.$modelCreated->getKey())
+        $response = $this->deleteJson($this->endpoint . '/' . $modelCreated->getKey())
             ->assertOk()
             ->assertJson($json);
 

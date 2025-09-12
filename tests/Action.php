@@ -33,7 +33,7 @@ trait Action
         $this->assertDatabaseHas($this->class, $modelAttributes);
         $this->assertDatabaseCount($this->class, 1);
 
-        return $model;
+        return test();
     }
 
     public function toBeUpdateAction()
@@ -41,6 +41,7 @@ trait Action
         $modelCreated = $this->factory->create();
         $modelCreatedAttributes = $this->removeTimestamps($modelCreated->toArray());
         $modelUpdateAttributes = $this->factory->make()->toArray();
+        $modelUpdateAttributes = array_merge($modelCreatedAttributes, $modelUpdateAttributes);
         $modelUpdateAttributes = $this->removeTimestamps($modelUpdateAttributes);
 
         $model = execute($this->action, $modelUpdateAttributes);
@@ -49,7 +50,7 @@ trait Action
         $this->assertDatabaseHas($modelCreated->getTable(), $modelUpdateAttributes);
         $this->assertDatabaseCount($modelCreated->getTable(), 1);
 
-        return $model;
+        return test();
     }
 
     public function toBeDeleteAction()
@@ -68,6 +69,6 @@ trait Action
             $this->assertDatabaseCount($modelCreated->getTable(), 0);
         }
 
-        return $model;
+        return test();
     }
 }

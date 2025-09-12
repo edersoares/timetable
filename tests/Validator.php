@@ -11,12 +11,14 @@ use Pest\Support\HigherOrderTapProxy;
 
 trait Validator
 {
-    public function toValidateRequired(string $attribute, ?string $message = null): HigherOrderTapProxy|TestCall
+    use Eloquent;
+
+    public function toValidateRequired(string $attribute): HigherOrderTapProxy|TestCall
     {
         $this->expectException(ValidationException::class);
         $this->expectExceptionMessage('field is required');
 
-        $modelAttributes = $this->factory->make()->toArray();
+        $modelAttributes = $this->getAttributesFromFactory();
 
         unset($modelAttributes[$attribute]);
 
@@ -30,7 +32,7 @@ trait Validator
         $this->expectException(ValidationException::class);
         $this->expectExceptionMessage('field must be at least');
 
-        $modelAttributes = $this->factory->make()->toArray();
+        $modelAttributes = $this->getAttributesFromFactory();
 
         $modelAttributes[$attribute] = Str::random($min - 1);
 
@@ -44,7 +46,7 @@ trait Validator
         $this->expectException(ValidationException::class);
         $this->expectExceptionMessage('field must not be greater than');
 
-        $modelAttributes = $this->factory->make()->toArray();
+        $modelAttributes = $this->getAttributesFromFactory();
 
         $modelAttributes[$attribute] = Str::random($max + 1);
 
@@ -58,7 +60,7 @@ trait Validator
         $this->expectException(ValidationException::class);
         $this->expectExceptionMessage('field must not be greater than');
 
-        $modelAttributes = $this->factory->make()->toArray();
+        $modelAttributes = $this->getAttributesFromFactory();
 
         $modelAttributes[$attribute] = substr((string) $modelAttributes[$attribute], 0, $size - 1);
 
