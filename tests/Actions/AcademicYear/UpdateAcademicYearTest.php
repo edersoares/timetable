@@ -12,6 +12,6 @@ describe('UpdateAcademicYear', function () {
     test()->toValidateMin('name', 3);
     test()->toValidateMax('name', 50);
     test()->toValidateInteger('year');
-    test()->toValidateMin('year', 1900);
-    test()->toValidateMax('year', 2100);
+    test()->toValidateMinNumeric('year', 1900);
+    test()->toValidateMaxNumeric('year', 2100);
 });

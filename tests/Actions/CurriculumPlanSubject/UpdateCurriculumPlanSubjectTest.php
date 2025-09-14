@@ -14,5 +14,5 @@ describe('UpdateCurriculumPlanSubject', function () {
     test()->toValidateInteger('subject_id');
     test()->toValidateExists('subject_id', 'subject');
     test()->toValidateInteger('quantity');
-    test()->toValidateMin('quantity', 1);
+    test()->toValidateMinNumeric('quantity', 1);
 });
